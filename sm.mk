@@ -17,12 +17,12 @@
 $(call inherit-product, device/xiaomi/gemini/full_gemini.mk)
 
 # Inherit some common CM stuff.
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+$(call inherit-product, vendor/sm/config/common_full_phone.mk)
 
 # Enhanced NFC
-$(call inherit-product, vendor/cm/config/nfc_enhanced.mk)
+$(call inherit-product, vendor/sm/config/nfc_enhanced.mk)
 
-PRODUCT_NAME := cm_gemini
+PRODUCT_NAME := sm_gemini
 BOARD_VENDOR := Xiaomi
 TARGET_VENDOR := Xiaomi
 PRODUCT_DEVICE := gemini
