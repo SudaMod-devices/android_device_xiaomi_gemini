@@ -113,8 +113,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/vendor/diracmobile.config:system/vendor/etc/diracmobile.config
 
 # Browser
-PRODUCT_PACKAGES += \
-    Gello
+#PRODUCT_PACKAGES += \
+#    Gello
 
 # Camera
 PRODUCT_PACKAGES += \
