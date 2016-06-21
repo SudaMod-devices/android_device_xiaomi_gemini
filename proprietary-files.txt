@@ -63,6 +63,7 @@ bin/hci_qcomm_init
 bin/mm-audio-ftm
 bin/wcnss_filter
 vendor/lib64/libbtnv.so
+vendor/lib64/libCommandSvc.so
 vendor/lib/libbtnv.so
 
 # Bluetooth firmware
@@ -485,7 +486,6 @@ vendor/lib/libdpmtcm.so
 bin/qseecomd
 vendor/bin/chamomile_provision
 vendor/bin/qseeproxydaemon
-vendor/bin/qseeproxysampledaemon
 vendor/lib64/mediadrm/libdrmclearkeyplugin.so
 vendor/lib64/lib-sec-disp.so
 vendor/lib64/libChamomilePA.so
@@ -747,23 +747,6 @@ bin/ipacm-diag
 lib64/hw/consumerir.msm8996.so
 lib/hw/consumerir.msm8996.so
 
-# Kernel modules
-lib/modules/qca_cld/qca_cld_wlan.ko
-lib/modules/ansi_cprng.ko
-lib/modules/backlight.ko
-lib/modules/br_netfilter.ko
-lib/modules/core_ctl.ko
-lib/modules/evbug.ko
-lib/modules/generic_bl.ko
-lib/modules/lcd.ko
-lib/modules/mmc_block_test.ko
-lib/modules/mmc_test.ko
-lib/modules/rdbg.ko
-lib/modules/spidev.ko
-lib/modules/test-iosched.ko
-lib/modules/ufs_test.ko
-lib/modules/wil6210.ko
-
 # Keystore
 vendor/lib64/hw/keystore.msm8996.so
 vendor/lib/hw/keystore.msm8996.so
@@ -1010,6 +993,8 @@ bin/sensors.qcom
 etc/sensor_diag.cfg
 lib64/libsensor_cal.so
 lib64/libsensor_calJNI.so
+lib/libsensor_cal.so
+lib/libsensor_calJNI.so
 vendor/lib64/hw/activity_recognition.msm8996.so
 vendor/lib64/libsensor_reg.so
 vendor/lib64/libsensor_test.so
@@ -1054,6 +1039,7 @@ bin/cnss-daemon
 bin/cnss_diag
 bin/fstman
 bin/nv_mac
+lib/modules/qca_cld/qca_cld_wlan.ko
 
 # WiFi Display
 bin/wfdservice

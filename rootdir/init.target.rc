@@ -37,10 +37,6 @@ on early-init
 on post-fs
     export LD_PRELOAD libNimsWrap.so
 
-on init
-    mkdir /cust 0771 system system
-    # write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
-
 on fs
     wait /dev/block/bootdevice
     mount_all fstab.qcom
@@ -54,15 +50,6 @@ on fs
     restorecon_recursive /dsp
 
 on post-fs
-    # We chown/chmod /cust again so because mount is run as root + defaults
-    chown system system /cust
-    chmod 0771 /cust
-    # We restorecon /cust in case the cust partition has been reset.
-    restorecon_recursive /cust
-
-    # Create the lost+found directories, so as to enforce our permissions
-    mkdir /cust/lost+found 0770 root root
-
     # We chown/chmod sram update period so app can change it
     chown root system /sys/module/qpnp_fg/parameters/sram_update_period_ms
     chmod 0660 /sys/module/qpnp_fg/parameters/sram_update_period_ms
@@ -88,13 +75,15 @@ on post-fs-data
 
 on boot
     start rmt_storage
+	
     # Access permission for secure touch
     chmod 0660 /sys/devices/soc/75ba000.i2c/i2c-12/12-0020/secure_touch_enable
     chmod 0440 /sys/devices/soc/75ba000.i2c/i2c-12/12-0020/secure_touch
     chown system drmrpc /sys/devices/soc/75ba000.i2c/i2c-12/12-0020/secure_touch_enable
     chown system drmrpc /sys/devices/soc/75ba000.i2c/i2c-12/12-0020/secure_touch
-    write /proc/sys/kernel/sched_boost 1
     write /sys/devices/soc/75ba000.i2c/i2c-12/12-0020/input/input0/update_fw 1
+
+    write /proc/sys/kernel/sched_boost 1
 
     # Access permission for led torch
     chmod 0666 /sys/class/leds/led:torch_0/brightness
@@ -170,9 +159,6 @@ service thermal-engine /system/vendor/bin/thermal-engine
     socket thermal-recv-client stream 0660 system system
     socket thermal-recv-passive-client stream 0666 system system
     group root
-    socket thermal-send-client stream 0666 system system
-    socket thermal-recv-client stream 0660 system system
-    socket thermal-recv-passive-client stream 0666 system system
 
 service time_daemon /system/bin/time_daemon
     class late_start
