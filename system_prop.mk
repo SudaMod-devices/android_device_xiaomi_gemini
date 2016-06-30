@@ -2,14 +2,13 @@
 PRODUCT_PROPERTY_OVERRIDES += \
     af.fast_track_multiplier=1 \
     audio_hal.period_size=192 \
-    audio.offload.disable=0 \
     audio.offload.buffer.size.kb=32 \
     audio.offload.video=true \
     audio.offload.pcm.16bit.enable=true \
     audio.offload.pcm.24bit.enable=true \
     audio.offload.track.enable=false \
     audio.offload.multiaac.enable=true \
-    audio.offload.multiple.enabled=false \
+    audio.offload.multiple.enabled=true \
     audio.offload.passthrough=false \
     audio.offload.gapless.enabled=true \
     audio.deep_buffer.media=true \
@@ -17,6 +16,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     audio.parser.ip.buffer.size=262144 \
     audio.dolby.ds2.enabled=false \
     audio.dolby.ds2.hardbypass=false \
+    ro.audio.flinger_standbytime_ms=300 \
     tunnel.audio.encode=true \
     use.voice.path.for.pcm.voip=true
 
@@ -25,8 +25,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.qc.sdk.audio.fluencetype=fluence \
     persist.audio.fluence.voicecall=true \
     persist.audio.fluence.voicerec=false \
-    persist.audio.fluence.speaker=true \
-    persist.audio.ssr.3mic=false
+    persist.audio.fluence.speaker=true
 
 # Bluetooth
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -46,15 +45,17 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.cne.feature=1 \
     persist.dpm.feature=5 \
-    persist.dpm.nsrm.bkg.evt=3955 \
-    persist.env.fastdorm.enabled=false
+    persist.dpm.nsrm.bkg.evt=3955
 
 # Fingerprint
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.qfp=false \
     ro.hardware.fingerprint=fpc \
-    sys.fpc.navigation.enableflags=0 \
     sys.fpc.tu.disabled=0
+
+# FRP
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.frp.pst=/dev/block/bootdevice/by-name/frp
 
 # Graphics
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -75,6 +76,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
+    av.debug.disable.pers.cache=true \
     media.aac_51_output_enabled=true \
     media.stagefright.enable-player=true \
     media.stagefright.enable-http=true \
@@ -84,7 +86,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     media.stagefright.enable-scan=true \
     mm.enable.smoothstreaming=true \
     mmp.enable.3g2=true \
-    mm.enable.qcom_parser=1040383 \
     persist.mm.enable.prefetch=true
 
 # NFC
@@ -136,17 +137,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.data.mode=concurrent \
     persist.dbg.volte_avail_ovr=1 \
     persist.dbg.vt_avail_ovr=1 \
-    persist.fd.scroff.timer=3000 \
-    persist.fd.scron.timer=10000 \
     persist.logd.size.radio=4M \
     persist.radio.apm_sim_not_pwdn=1 \
-    persist.radio.calls.on.ims=0 \
-    persist.radio.jbims=0 \
-    persist.radio.csvt.enabled=false \
-    persist.radio.data_no_toggle=1 \
     persist.radio.force_on_dc=true \
     persist.radio.rat_on=combine \
-    persist.radio.mt_sms_ack=20 \
     persist.radio.multisim.config=dsds \
     persist.radio.custom_ecc=1 \
     persist.radio.sib16_support=1 \
@@ -180,11 +174,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Wifi
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0
-
-# WiFi display
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.debug.wfd.enable=1 \
-    persist.hwc.enable_vds=1 \
-    persist.sys.wfd.virtual=0 \
-    sdm.perf_hint_window=50 \
-    ro.vendor.wl_library=libqti-wl.so
