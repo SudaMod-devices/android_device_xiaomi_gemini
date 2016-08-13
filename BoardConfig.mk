@@ -66,7 +66,6 @@ TARGET_BOARD_PLATFORM_GPU := qcom-adreno530
 USE_CLANG_PLATFORM_BUILD := true
 
 # Releasetools
-ADD_RADIO_FILES ?= true
 TARGET_RELEASETOOLS_EXTENSIONS := device/qcom/common
 
 # ANT+
@@ -107,6 +106,7 @@ BOARD_HAVE_BLUETOOTH_QCOM := true
 QCOM_BT_USE_BTNV := true
 
 # Camera
+BOARD_QTI_CAMERA_32BIT_ONLY := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 
 # Charger

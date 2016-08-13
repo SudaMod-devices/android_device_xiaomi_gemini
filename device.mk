@@ -86,6 +86,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     audiod \
     audio.a2dp.default \
+    audio.primary.msm8996 \
     audio.r_submix.default \
     audio.usb.default \
     libaudio-resampler \
@@ -115,14 +116,6 @@ PRODUCT_COPY_FILES += \
 # Camera
 PRODUCT_PACKAGES += \
     Snap
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/camera/imx298_chromatix.xml:system/etc/camera/imx298_chromatix.xml \
-    $(LOCAL_PATH)/configs/camera/imx298_liteon_chromatix.xml:system/etc/camera/imx298_liteon_chromatix.xml \
-    $(LOCAL_PATH)/configs/camera/imx298_semco_chromatix.xml:system/etc/camera/imx298_semco_chromatix.xml \
-    $(LOCAL_PATH)/configs/camera/msm8996_camera.xml:system/etc/camera/msm8996_camera.xml \
-    $(LOCAL_PATH)/configs/camera/ov4688_chromatix.xml:system/etc/camera/ov4688_chromatix.xml \
-    $(LOCAL_PATH)/configs/camera/ov4688_primax_chromatix.xml:system/etc/camera/ov4688_primax_chromatix.xml
 
 # Charger
 PRODUCT_PACKAGES += \
@@ -169,7 +162,8 @@ PRODUCT_PACKAGES += \
 
 # GPS
 PRODUCT_PACKAGES += \
-    gps.msm8996
+    gps.msm8996 \
+    libcurl
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/etc/flp.conf:system/etc/flp.conf \
@@ -246,8 +240,7 @@ PRODUCT_COPY_FILES += \
 # OMX
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
-    libdivxdrmdecrypt \
-    libmm-omxcore \
+    libextmedia_jni \
     libOmxAacEnc \
     libOmxAmrEnc \
     libOmxCore \
@@ -277,10 +270,12 @@ PRODUCT_PACKAGES += \
     netmgr_config.xml \
     qmi_config.xml
 
+PRODUCT_PACKAGES += \
+    libjson
+
 # RIL
 PRODUCT_PACKAGES += \
     librmnetctl \
-    libtinyxml2 \
     libxml2
 
 # Sensors

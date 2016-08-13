@@ -39,13 +39,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.camera.stats.test=5
+    persist.camera.imglib.fddsp=1
 
-# CNE and DPM
+# CNE
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.cne.feature=1 \
-    persist.dpm.feature=5 \
-    persist.dpm.nsrm.bkg.evt=3955
+    persist.cne.feature=1
 
 # Fingerprint
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -65,13 +63,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.sf.hw=1 \
     dev.pm.dyn_samplingrate=1 \
     persist.hwc.mdpcomp.enable=true \
-    ro.opengles.version=196609 \
+    ro.opengles.version=196610 \
     ro.sf.lcd_density=480 \
     ro.sys.display.support=63
 
 # GPS
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.gps.qc_nlp_in_use=1 \
+    persist.loc.nlp_name=com.qualcomm.location \
     ro.gps.agps_provider=1
 
 # Media
