@@ -35,6 +35,7 @@ on init
 
     # Support legacy paths
     symlink /sdcard /mnt/sdcard
+    symlink /sdcard /storage/sdcard0
 
 on early-boot
     # Set RLIMIT_MEMLOCK to 64MB
@@ -45,8 +46,21 @@ on early-boot
     write /sys/block/sda/queue/read_ahead_kb 2048
     write /sys/block/sde/queue/read_ahead_kb 2048
 
+    # Allow subsystem (modem etc) debugging
+    write /sys/module/subsystem_restart/parameters/enable_debug ${persist.sys.ssr.enable_debug}
+    write /sys/module/pil_msa/parameters/pbl_mba_boot_timeout_ms ${persist.sys.mba_boot_timeout}
+    write /sys/module/pil_msa/parameters/modem_auth_timeout_ms ${persist.sys.modem_auth_timeout}
+    write /sys/module/peripheral_loader/parameters/proxy_timeout_ms ${persist.sys.pil_proxy_timeout}
     write /sys/kernel/boot_adsp/boot 1
     write /sys/kernel/boot_slpi/boot 1
+
+    # SSR setup
+    write /sys/bus/msm_subsys/devices/subsys0/restart_level "related"
+    write /sys/bus/msm_subsys/devices/subsys1/restart_level "related"
+    write /sys/bus/msm_subsys/devices/subsys2/restart_level "related"
+    write /sys/bus/msm_subsys/devices/subsys3/restart_level "related"
+    write /sys/bus/msm_subsys/devices/subsys4/restart_level "related"
+    write /sys/bus/msm_subsys/devices/subsys5/restart_level "related"
 
 on boot
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
@@ -339,6 +353,9 @@ on property:sys.boot_completed=1
     write /sys/block/sda/queue/read_ahead_kb 256
     write /sys/block/sde/queue/read_ahead_kb 256
 
+    # CPE fw_name used by sound trigger HAL
+    chown media audio /sys/kernel/wcd_cpe0/fw_name
+
 # Corefile limit
 on property:persist.debug.trace=1
     mkdir /data/core 0777 root root
@@ -358,9 +375,6 @@ on property:bluetooth.sap.status=running
 
 on property:bluetooth.sap.status=stopped
     stop bt-sap
-
-on property:ro.bluetooth.ftm_enabled=true
-    start ftmd
 
 on property:bluetooth.startbtsnoop=true
     start btsnoop
@@ -462,13 +476,6 @@ service btsnoop /system/bin/btsnoop
     user bluetooth
     group bluetooth net_bt_admin sdcard_rw sdcard_r media_rw
     class late_start
-    disabled
-    oneshot
-
-service ftmd /system/bin/ftmdaemon
-    class late_start
-    user root
-    group bluetooth net_bt_admin misc net_bt_stack qcom_diag net_bt
     disabled
     oneshot
 

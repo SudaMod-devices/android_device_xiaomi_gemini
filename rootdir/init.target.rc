@@ -107,7 +107,7 @@ service qvop-daemon /system/bin/qvop-daemon
     group system drmrpc
 
 # Start up peripheral manager
-service per_mgr system/bin/pm-service
+service per_mgr /system/bin/pm-service
     class core
     user system
     group system net_raw
@@ -238,22 +238,11 @@ service displayfeature /system/bin/displayfeature
     user root
     group root
 
-service qpaydaemon /system/vendor/bin/qpaydaemon
-    class late_start
-    user system
-    group system
-
-service nv_fem /system/bin/nv_fem
-   class main
-   user root
-   group net_raw
-   oneshot
-
-service nv_mac /system/bin/nv_mac
-   class main
-   user root
-   group net_raw
-   oneshot
+service readmac /system/bin/readmac
+    class main
+    user root
+    group root
+    oneshot
 
 service mmbn-daemon /system/bin/mmbn-daemon
     class main
@@ -261,9 +250,3 @@ service mmbn-daemon /system/bin/mmbn-daemon
 
 on property:slpi.restart=1
     write /sys/kernel/debug/msm_subsys/slpi restart
-
-on property:persist.sys.display_oled_hbm=0
-   write /sys/devices/virtual/graphics/fb0/msm_fb_dispparam 0xE00
-
-on property:persist.sys.display_oled_hbm=1
-   write /sys/devices/virtual/graphics/fb0/msm_fb_dispparam 0xD00

@@ -66,7 +66,6 @@ vendor/lib/libaudiodevarb.so
 # Bluetooth
 bin/btnvtool
 bin/dun-server
-bin/ftmdaemon
 bin/hci_qcomm_init
 bin/wcnss_filter
 vendor/lib64/libbtnv.so
@@ -96,12 +95,14 @@ lib/libmorpho_panorama.so
 lib/libqomx_core.so
 lib/libRecoFace.so
 vendor/lib/libarcsoft_beauty_shot.so
+vendor/lib/libchromaflash.so|8fe5d31f6d1e304b6b6ffe4ca2576abbcb2cc88d
 vendor/lib/libFaceGrade.so
 vendor/lib/libFaceProc.so
 vendor/lib/libflash_pmic.so
 vendor/lib/libjpegdhw.so
 vendor/lib/libjpegdmahw.so
 vendor/lib/libjpegehw.so
+vendor/lib/libllvd_smore.so|89658461217a698d1cea8772465c2d8421c1bfce
 vendor/lib/libmmcamera2_c2d_module.so
 vendor/lib/libmmcamera2_cpp_module.so
 vendor/lib/libmmcamera2_frame_algorithm.so
@@ -117,6 +118,7 @@ vendor/lib/libmmcamera2_q3a_core.so
 vendor/lib/libmmcamera2_sensor_modules.so
 vendor/lib/libmmcamera2_stats_algorithm.so
 vendor/lib/libmmcamera2_stats_modules.so
+vendor/lib/libmmcamera_chromaflash_lib.so|fe5ce108e3fe4081e3a2c544f27bc5d13019ba15
 vendor/lib/libmmcamera_dbg.so
 vendor/lib/libmmcamera_eeprom_util.so
 vendor/lib/libmmcamera_eztune_module.so
@@ -126,9 +128,12 @@ vendor/lib/libmmcamera_faceproc2.so
 vendor/lib/libmmcamera_hdr_gb_lib.so
 vendor/lib/libmmcamera_hvx_add_constant.so
 vendor/lib/libmmcamera_hvx_grid_sum.so
+vendor/lib/libmmcamera_imglib_faceproc_adspstub.so
 vendor/lib/libmmcamera_imglib.so
 vendor/lib/libmmcamera_imx298_liteon.so
 vendor/lib/libmmcamera_imx298_semco.so
+vendor/lib/libmmcamera_llvd.so|9930b4b430bf557e919ca0223156b5511c74701c
+vendor/lib/libmmcamera_optizoom_lib.so|17dfddb185f8c9a2bc075d656849024a9912dc88
 vendor/lib/libmmcamera_ov4688.so
 vendor/lib/libmmcamera_ov4688_eeprom.so
 vendor/lib/libmmcamera_ov4688_primax.so
@@ -138,6 +143,7 @@ vendor/lib/libmmcamera_pdafcamif.so
 vendor/lib/libmmcamera_ppbase_module.so
 vendor/lib/libmmcamera_ppeiscore.so
 vendor/lib/libmmcamera_sony_imx298_eeprom.so
+vendor/lib/libmmcamera_stillmore_lib.so|ffb8bb5af395a39188279083bce8232aaa279c49
 vendor/lib/libmmcamera_thread_services.so
 vendor/lib/libmmcamera_tintless_algo.so
 vendor/lib/libmmcamera_tintless_bg_pca_algo.so
@@ -151,9 +157,11 @@ vendor/lib/libmorpho_easy_hdr.so
 vendor/lib/libmorpho_hdr_checker.so
 vendor/lib/libmorpho_image_stab4.so
 vendor/lib/libmorpho_panorama_gp.so
+vendor/lib/liboptizoom.so|5cd3d2b56986eebe4a0d4605d13be825886ae017
 vendor/lib/libqomx_jpegdec.so
 vendor/lib/libqomx_jpegenc_pipe.so
 vendor/lib/libqomx_jpegenc.so
+vendor/lib/libseemore.so|74d5842f29a30b297601cb461ac78ce18fa2bc4e
 vendor/lib/libSonyIMX298PdafLibrary.so
 vendor/lib/libtm_interface.so
 
@@ -374,7 +382,7 @@ etc/permissions/dpmapi.xml
 framework/com.qti.dpmframework.jar
 framework/dpmapi.jar
 framework/tcmclient.jar
--priv-app/dpmserviceapp/dpmserviceapp.apk
+-priv-app/dpmserviceapp/dpmserviceapp.apk|c1857ea53c173de4bcc265e24aa2d2631a62c5e2
 vendor/lib64/libdpmctmgr.so
 vendor/lib64/libdpmfdmgr.so
 vendor/lib64/libdpmframework.so
@@ -404,20 +412,11 @@ vendor/lib64/libsecureui_svcsock.so
 vendor/lib64/libssd.so
 vendor/lib/libQSEEComAPI.so
 
-# Fingerprint and Sense ID
+# Fingerprint
 bin/qvop-daemon
-etc/stargate/qfp_config.txt
 lib64/hw/fingerprint.fpc.so
 lib/hw/fingerprint.fpc.so
-vendor/lib64/libFIDOKeyProvisioning.so
-vendor/lib64/libFidoCryptoJNI.so
-vendor/lib64/libFidoCrypto.so
-vendor/lib64/libFidoSuiJNI.so
 vendor/lib64/libqvop-service.so
-vendor/lib/libFIDOKeyProvisioning.so
-vendor/lib/libFidoCryptoJNI.so
-vendor/lib/libFidoCrypto.so
-vendor/lib/libFidoSuiJNI.so
 vendor/lib/libqvop-service.so
 
 # Gatekeeper
@@ -484,7 +483,6 @@ vendor/lib/libxtadapter.so
 vendor/lib/libxtwifi_ulp_adaptor.so
 
 # Graphics
-bin/displayfeature
 vendor/lib64/egl/eglSubDriverAndroid.so
 vendor/lib64/egl/libEGL_adreno.so
 vendor/lib64/egl/libGLESv1_CM_adreno.so
@@ -511,7 +509,7 @@ vendor/lib64/libsd_sdk_display.so
 vendor/lib64/libsdm-color.so
 vendor/lib64/libsdm-diag.so
 -vendor/lib64/libsdm-disp-apis.so
-vendor/lib64/libuiblur.so
+vendor/lib64/libuiblur.so|4b3fabf5ded7c4af531abde681676fc5e9248494
 vendor/lib/egl/eglSubDriverAndroid.so
 vendor/lib/egl/libEGL_adreno.so
 vendor/lib/egl/libGLESv1_CM_adreno.so
@@ -625,11 +623,6 @@ vendor/lib64/libconnctrl.so
 vendor/lib/libQtiTether.so
 vendor/lib/libconnctrl.so
 
-# NFC
-bin/pnx
-vendor/bin/qpaydaemon
-vendor/lib64/libQPayJNI.so
-
 # NFC firmware
 vendor/firmware/libpn548ad_fw.so
 
@@ -653,6 +646,7 @@ vendor/lib64/libperipheral_client.so
 vendor/lib/libperipheral_client.so
 
 # Postprocessing
+bin/displayfeature
 etc/permissions/com.qti.snapdragon.sdk.display.xml
 framework/com.qti.snapdragon.sdk.display.jar
 -vendor/app/colorservice/colorservice.apk
@@ -666,8 +660,8 @@ vendor/lib64/libmm-qdcm.so
 # QMI
 bin/irsc_util
 etc/permissions/qti_permissions.xml
-lib64/libqminvapi.so
-lib/libqminvapi.so
+-lib64/libqminvapi.so
+-lib/libqminvapi.so
 vendor/bin/pd-mapper
 vendor/lib64/libdiag.so
 vendor/lib64/libdsi_netctrl.so
@@ -723,7 +717,7 @@ etc/permissions/telephonyservice.xml
 framework/embmslibrary.jar
 -framework/qcnvitems.jar
 -framework/qcrilhook.jar
-framework/qti-telephony-common.jar
+framework/qti-telephony-common.jar|97d23b52db3773005e51eac7b9df1701c99a416c
 framework/QtiTelephonyServicelibrary.jar
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 vendor/bin/qti
@@ -767,9 +761,12 @@ vendor/lib64/libTimeService.so
 vendor/lib/libTimeService.so
 -vendor/lib/libtime_genoff.so
 
+# Widevine
+vendor/lib/libWVStreamControlAPI_L3.so|61673304827483d44b735a3dd08f0783d10ce92d
+vendor/lib/libwvdrm_L3.so|7e77482481197997294a834bfbc817a01b6075cd
+vendor/lib/mediadrm/libwvdrmengine.so|6c0954f6b6f33d25d3a2727495df93ee59b5f18f
+
 # WiFi
 bin/cnss-daemon
 bin/cnss_diag
-bin/nv_fem
-bin/nv_mac
 lib/modules/qca_cld/qca_cld_wlan.ko
