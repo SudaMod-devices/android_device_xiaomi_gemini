@@ -112,6 +112,9 @@ static const char GREEN_BLINK_FILE[]
 static const char BLUE_BLINK_FILE[]
         = "/sys/class/leds/blue/blink";
 
+static const char RGB_BLINK_FILE[]
+        = "/sys/class/leds/rgb/rgb_blink";
+
 #define RAMP_SIZE 8
 static int BRIGHTNESS_RAMP[RAMP_SIZE]
         = { 0, 12, 25, 37, 50, 72, 85, 100 };
@@ -259,16 +262,10 @@ static int set_speaker_light_locked(struct light_device_t* dev,
     red = (colorRGB >> 16) & 0xFF;
     green = (colorRGB >> 8) & 0xFF;
     blue = colorRGB & 0xFF;
-    // Bias for true white
-    if (colorRGB != 0 && red == green && green == blue) {
-        blue = (blue * 171) / 256;
-    }
     blink = onMS > 0 && offMS > 0;
 
     // Disable all blinking to start
-    write_int(RED_BLINK_FILE, 0);
-    write_int(GREEN_BLINK_FILE, 0);
-    write_int(BLUE_BLINK_FILE, 0);
+    write_int(RGB_BLINK_FILE, 0);
 
     if (blink) {
         stepDuration = RAMP_STEP_DURATION;
@@ -312,11 +309,14 @@ static int set_speaker_light_locked(struct light_device_t* dev,
         free(duty);
 
         // Start the party
-        write_int(RED_BLINK_FILE, red);
-        write_int(GREEN_BLINK_FILE, green);
-        write_int(BLUE_BLINK_FILE, blue);
+        write_int(RGB_BLINK_FILE, 1);
 
     } else {
+        if (red == 0 && green == 0 && blue == 0) {
+            write_int(RED_BLINK_FILE, 0);
+            write_int(GREEN_BLINK_FILE, 0);
+            write_int(BLUE_BLINK_FILE, 0);
+        }
         write_int(RED_LED_FILE, red);
         write_int(GREEN_LED_FILE, green);
         write_int(BLUE_LED_FILE, blue);
@@ -352,7 +352,33 @@ static int set_light_notifications(struct light_device_t* dev,
 {
     pthread_mutex_lock(&g_lock);
 
+    unsigned int brightness;
+    unsigned int color;
+    unsigned int rgb[3];
+
     g_notification = *state;
+
+    // If a brightness has been applied by the user
+    brightness = (g_notification.color & 0xFF000000) >> 24;
+    if (brightness > 0 && brightness < 0xFF) {
+
+        // Retrieve each of the RGB colors
+        color = g_notification.color & 0x00FFFFFF;
+        rgb[0] = (color >> 16) & 0xFF;
+        rgb[1] = (color >> 8) & 0xFF;
+        rgb[2] = color & 0xFF;
+
+        // Apply the brightness level
+        if (rgb[0] > 0)
+            rgb[0] = (rgb[0] * brightness) / 0xFF;
+        if (rgb[1] > 0)
+            rgb[1] = (rgb[1] * brightness) / 0xFF;
+        if (rgb[2] > 0)
+            rgb[2] = (rgb[2] * brightness) / 0xFF;
+
+        // Update with the new color
+        g_notification.color = (rgb[0] << 16) + (rgb[1] << 8) + rgb[2];
+    }
 
     handle_speaker_light_locked(dev);
     pthread_mutex_unlock(&g_lock);
