@@ -20,6 +20,4 @@
   <string name="button_panel_title">更多按钮</string>
   <string name="button_swap_title">交换按钮</string>
   <string name="button_swap_summary">交换最近应用和后退按钮的顺序</string>
-  <string name="fp_home_title">轻触指纹键</string>
-  <string name="fp_home_summary">轻触指纹键代替按压</string>
 </resources>
