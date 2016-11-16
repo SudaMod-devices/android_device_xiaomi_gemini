@@ -20,7 +20,7 @@
  {
    "remote": "suda",
    "revision": "cm-13.0",
-   "repository": "SudaMod-devices/android_kernel_xiaomi_msm8996",
+   "repository": "CyanogenMod/android_kernel_xiaomi_msm8996",
    "target_path": "kernel/xiaomi/msm8996"
  }
 ]
