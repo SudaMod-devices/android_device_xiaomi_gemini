@@ -85,7 +85,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.demo.hdmirotationlock=false \
     persist.hwc.enable_vds=1 \
     persist.sys.wfd.virtual=0 \
-    ro.opengles.version=196609 \
+    ro.opengles.version=196610 \
     ro.sf.lcd_density=480 \
     sdm.debug.disable_rotator_split=1 \
     sdm.perf_hint_window=50
@@ -120,6 +120,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Perf
 PRODUCT_PROPERTY_OVERRIDES += \
+    ro.am.reschedule_service=true \
     ro.min_freq_0=307200 \
     ro.min_freq_4=307200 \
     ro.sys.fw.bg_apps_limit=60 \
