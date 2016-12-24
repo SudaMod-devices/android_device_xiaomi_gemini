@@ -31,14 +31,25 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Bluetooth
 PRODUCT_PROPERTY_OVERRIDES += \
     bt.max.hfpclient.connections=1 \
+    qcom.bluetooth.soc=rome \
+    ro.bluetooth.dun=true \
+    ro.bluetooth.hfp.ver=1.7 \
+    ro.bluetooth.sap=true \
     ro.btconfig.if=uart \
     ro.btconfig.vendor=qcom \
     ro.btconfig.chip=QCA6164 \
     ro.btconfig.dev=/dev/ttyHS0 \
-    qcom.bluetooth.soc=rome
+    ro.qualcomm.bluetooth.ftp=true \
+    ro.qualcomm.bluetooth.hfp=true \
+    ro.qualcomm.bluetooth.hsp=true \
+    ro.qualcomm.bluetooth.map=true \
+    ro.qualcomm.bluetooth.nap=true \
+    ro.qualcomm.bluetooth.opp=true \
+    ro.qualcomm.bluetooth.pbap=true
 
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
+    persist.camera.gyro.disable=0 \
     persist.camera.imglib.fddsp=1
 
 # CNE
@@ -142,7 +153,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.data.qmi.adb_logmask=0 \
     persist.dbg.volte_avail_ovr=1 \
     persist.dbg.vt_avail_ovr=1 \
-    persist.logd.size.radio=4M \
     persist.net.doxlat=true \
     persist.radio.apm_sim_not_pwdn=1 \
     persist.radio.force_on_dc=true \
@@ -166,9 +176,17 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.data.df.iwlan_mux=9 \
     persist.data.df.dev_name=rmnet_usb0
 
+# Storage
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.sys.sdcardfs=true
+
 # TimeService
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.timed.enable=true
+
+# USB
+PRODUCT_PROPERTY_OVERRIDES += \
+    sys.usb.controller=6a00000.dwc3
 
 # Wifi
 PRODUCT_PROPERTY_OVERRIDES += \
