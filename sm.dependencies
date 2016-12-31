@@ -22,7 +22,7 @@
    "revision": "cm-14.1",
    "repository": "CyanogenMod/android_kernel_xiaomi_msm8996",
    "target_path": "kernel/xiaomi/msm8996"
- }
+ },
  {
    "remote": "suda",
    "revision": "cm-14.1",
