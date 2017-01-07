@@ -24,9 +24,8 @@ $(call inherit-product, device/xiaomi/gemini/device.mk)
 # Inherit some common CM stuff.
 $(call inherit-product, vendor/sm/config/common_full_phone.mk)
 
-PRODUCT_NAME := sm_gemini
-
 # Device identifier. This must come after all inclusions.
+PRODUCT_NAME := sm_gemini
 PRODUCT_DEVICE := gemini
 PRODUCT_BRAND := Xiaomi
 PRODUCT_MODEL := MI 5

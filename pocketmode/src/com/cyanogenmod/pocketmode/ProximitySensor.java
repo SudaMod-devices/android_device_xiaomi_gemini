@@ -1,6 +1,5 @@
 /*
- * Copyright (c) 2015 The CyanogenMod Project
- * Copyright (C) 2017 The LineageOS Project
+ * Copyright (c) 2016 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.cyanogenmod.settings.doze;
+package com.cyanogenmod.pocketmode;
 
 import android.content.Context;
 import android.hardware.Sensor;
@@ -23,55 +22,32 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.util.Log;
+import org.cyanogenmod.internal.util.FileUtils;
 
 public class ProximitySensor implements SensorEventListener {
 
     private static final boolean DEBUG = false;
-    private static final String TAG = "ProximitySensor";
+    private static final String TAG = "PocketModeProximity";
 
-    // Maximum time for the hand to cover the sensor: 1s
-    private static final int HANDWAVE_MAX_DELTA_NS = 1000 * 1000 * 1000;
-
-    // Minimum time until the device is considered to have been in the pocket: 2s
-    private static final int POCKET_MIN_DELTA_NS = 2000 * 1000 * 1000;
+    private static final String FPC_FILE = "/sys/devices/soc/soc:fpc_fpc1020/proximity_state";
 
     private SensorManager mSensorManager;
     private Sensor mSensor;
     private Context mContext;
 
-    private boolean mSawNear = false;
-    private long mInPocketTime = 0;
-
     public ProximitySensor(Context context) {
         mContext = context;
-        mSensorManager = (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
+        mSensorManager = (SensorManager)
+                mContext.getSystemService(Context.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
         boolean isNear = event.values[0] < mSensor.getMaximumRange();
-        if (mSawNear && !isNear) {
-            if (shouldPulse(event.timestamp)) {
-                Utils.launchDozePulse(mContext);
-            }
-        } else {
-            mInPocketTime = event.timestamp;
+        if (FileUtils.isFileWritable(FPC_FILE)) {
+            FileUtils.writeLine(FPC_FILE, isNear ? "1" : "0");
         }
-        mSawNear = isNear;
-    }
-
-    private boolean shouldPulse(long timestamp) {
-        long delta = timestamp - mInPocketTime;
-
-        if (Utils.handwaveGestureEnabled(mContext) && Utils.pocketGestureEnabled(mContext)) {
-            return true;
-        } else if (Utils.handwaveGestureEnabled(mContext)) {
-            return delta < HANDWAVE_MAX_DELTA_NS;
-        } else if (Utils.pocketGestureEnabled(mContext)) {
-            return delta >= POCKET_MIN_DELTA_NS;
-        }
-        return false;
     }
 
     @Override
@@ -81,7 +57,8 @@ public class ProximitySensor implements SensorEventListener {
 
     protected void enable() {
         if (DEBUG) Log.d(TAG, "Enabling");
-        mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        mSensorManager.registerListener(this, mSensor,
+                SensorManager.SENSOR_DELAY_NORMAL);
     }
 
     protected void disable() {
