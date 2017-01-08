@@ -122,8 +122,10 @@ PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:/system/etc/usb_audio_policy_configuration.xml
 
 # Browser
-#PRODUCT_PACKAGES += \
-#    Gello
+PRODUCT_PACKAGES += \
+    Gello
+
+WITH_GELLO_SOURCE := true
 
 # Camera
 PRODUCT_PACKAGES += \

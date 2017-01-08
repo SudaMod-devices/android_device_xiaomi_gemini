@@ -16,8 +16,11 @@
      limitations under the License.
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <!-- Button settings -->
   <string name="button_panel_title">更多按钮</string>
   <string name="button_swap_title">交换按钮</string>
   <string name="button_swap_summary">交换最近应用和后退按钮的顺序</string>
+  <string name="fp_home_title">指纹传感器代替HOME</string>
+  <string name="fp_home_summary">使用指纹传感器作为HOME键</string>
+  <string name="fp_wakeup_title">指纹传感器唤醒设备</string>
+  <string name="fp_wakeup_summary">屏幕关闭时允许使用指纹传感器唤醒设备</string>
 </resources>

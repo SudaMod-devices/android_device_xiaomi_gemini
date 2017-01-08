@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2016 The CyanogenMod Project
+ *           (C) 2017 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,12 +21,8 @@ import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.hardware.input.InputManager;
-import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.InputEvent;
 
 import java.io.File;
 
@@ -75,12 +72,6 @@ public class Startup extends BroadcastReceiver {
                 context.sendBroadcast(custIntent);
             }
         }
-    }
-
-    private void sendInputEvent(InputEvent event) {
-        InputManager inputManager = InputManager.getInstance();
-        inputManager.injectInputEvent(event,
-                InputManager.INJECT_INPUT_EVENT_MODE_WAIT_FOR_FINISH);
     }
 
     static boolean hasButtonProcs() {
