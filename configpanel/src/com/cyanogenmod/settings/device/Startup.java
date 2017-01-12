@@ -10,7 +10,7 @@
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS PreferenceManagerOF ANY KIND, either express or implied.
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
@@ -21,9 +21,7 @@ import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import java.io.File;
@@ -40,7 +38,6 @@ public class Startup extends BroadcastReceiver {
     public void onReceive(final Context context, final Intent intent) {
         final String action = intent.getAction();
         if (cyanogenmod.content.Intent.ACTION_INITIALIZE_CM_HARDWARE.equals(action)) {
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
             // Disable button settings if needed
             if (!hasButtonProcs()) {
@@ -65,19 +62,13 @@ public class Startup extends BroadcastReceiver {
                             " failed while restoring saved preference values");
                     }
                 }
-
-                // Send initial broadcasts
-                final Intent custIntent = new Intent(Constants.FP_HOME_INTENT);
-                custIntent.putExtra(Constants.FP_HOME_INTENT_EXTRA,
-                        prefs.getBoolean(Constants.FP_HOME_KEY, false));
-                custIntent.setFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY);
-                context.sendBroadcast(custIntent);
             }
         }
     }
 
     static boolean hasButtonProcs() {
         return new File(Constants.BUTTON_SWAP_NODE).exists() ||
+                new File(Constants.FP_HOME_KEY_NODE).exists() ||
                 new File(Constants.FP_WAKEUP_NODE).exists();
     }
 
