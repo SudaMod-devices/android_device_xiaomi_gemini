@@ -191,3 +191,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Wifi
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0
+
+# OTA URL
+PRODUCT_PROPERTY_OVERRIDES += \
+    sm.ota.uri=https://raw.githubusercontent.com/SudaMod/OTA_SERVICE/gemini/ota.json
