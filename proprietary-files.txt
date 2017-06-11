@@ -131,6 +131,9 @@ etc/camera/ov4688_primax_chromatix.xml
 vendor/lib/libmmcamera_ov4688_eeprom.so
 vendor/lib/libmmcamera_sony_imx298_eeprom.so
 
+# Camera ois
+vendor/lib/libois_lc898122.so
+
 # Camera sensors
 vendor/lib/libmmcamera_imx298.so
 vendor/lib/libmmcamera_imx298_liteon.so
@@ -158,3 +161,11 @@ etc/firmware/a530_zap.mdt
 
 # NFC firmware
 vendor/firmware/libpn548ad_fw.so
+
+# Sensors
+etc/sensors/hals.conf
+etc/sensors/sensor_def_qcomdev.conf
+
+# Thermal
+etc/thermal-engine-8996.conf
+etc/thermal-engine-8996-a1.conf
